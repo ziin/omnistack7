@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const path = require("path");
 
 mongoose.connect(
@@ -14,6 +15,7 @@ mongoose.connect(
 
 const app = express();
 
+app.use(cors());
 // Static access to images
 app.use(
   "/files",

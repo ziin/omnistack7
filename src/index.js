@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const path = require("path");
 
 mongoose.connect(
   `mongodb+srv://${process.env.DB_MONGO_USER}:${
@@ -12,6 +13,12 @@ mongoose.connect(
 );
 
 const app = express();
+
+// Static access to images
+app.use(
+  "/files",
+  express.static(path.resolve(__dirname, "..", "uploads", "resized"))
+);
 
 app.use(require("./routes"));
 

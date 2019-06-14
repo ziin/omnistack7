@@ -14,6 +14,13 @@ mongoose.connect(
 );
 
 const app = express();
+const server = require("http").Server(app);
+const io = require("socket.io")(server);
+
+app.use((req, res, next) => {
+  req.io = io;
+  next();
+});
 
 app.use(cors());
 // Static access to images
@@ -24,4 +31,4 @@ app.use(
 
 app.use(require("./routes"));
 
-app.listen(3333);
+server.listen(3333);

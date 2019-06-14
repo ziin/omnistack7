@@ -33,6 +33,8 @@ module.exports = {
       image
     });
 
+    req.io.emit("post", post);
+
     res.send(post);
   }
 };

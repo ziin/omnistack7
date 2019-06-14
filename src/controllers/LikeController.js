@@ -9,6 +9,8 @@ module.exports = {
 
     await post.save();
 
+    req.io.emit("like", post);
+
     res.send(post);
   }
 };

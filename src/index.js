@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
+const PORT = 3333;
 
 mongoose.connect(
   `mongodb+srv://${process.env.DB_MONGO_USER}:${
@@ -31,4 +32,6 @@ app.use(
 
 app.use(require("./routes"));
 
-server.listen(3333);
+server.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}.`);
+});
